@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 
 import android.content.Context;
 
+import com.mercadopago.BuildConfig;
 import com.mercadopago.R;
 import com.mercadopago.callbacks.Callback;
 import com.mercadopago.core.CustomServer;
@@ -28,9 +29,11 @@ import com.mercadopago.mvp.OnResourcesRetrievedCallback;
 import com.mercadopago.preferences.CheckoutPreference;
 import com.mercadopago.preferences.PaymentPreference;
 import com.mercadopago.preferences.ServicePreference;
+import com.mercadopago.px_tracking.MPTracker;
 import com.mercadopago.util.JsonUtil;
 import com.mercadopago.util.MercadoPagoUtil;
 import com.mercadopago.util.TextUtils;
+import com.mercadopago.util.TrackingUtil;
 
 import java.lang.reflect.Type;
 import java.math.BigDecimal;
@@ -44,6 +47,7 @@ public class CheckoutProviderImpl implements CheckoutProvider {
     private final Context context;
     private final MercadoPagoServices mercadoPagoServices;
     private final String publicKey;
+    private String siteId;
 
     public CheckoutProviderImpl(Context context, String publicKey, String privateKey, ServicePreference servicePreference) {
         if (TextUtils.isEmpty(publicKey) && TextUtils.isEmpty(privateKey)) {
@@ -61,6 +65,10 @@ public class CheckoutProviderImpl implements CheckoutProvider {
                 .setPrivateKey(privateKey)
                 .setServicePreference(servicePreference)
                 .build();
+    }
+
+    public void setSiteId(String siteId) {
+        this.siteId = siteId;
     }
 
     @Override
@@ -192,6 +200,14 @@ public class CheckoutProviderImpl implements CheckoutProvider {
             createPaymentInMerchantServer(transactionId, paymentData, onResourcesRetrievedCallback);
         } else {
             createPaymentInMercadoPago(transactionId, checkoutPreference, paymentData, binaryMode, customerId, onResourcesRetrievedCallback);
+        }
+    }
+
+    private void trackPayment(Payment payment) {
+        if (payment != null) {
+            MPTracker.getInstance().trackPayment(TrackingUtil.SCREEN_NAME_NO_SCREEN, "CREATE_PAYMENT_RESPONSE", payment.getId(),
+                    payment.getPaymentMethodId(), payment.getStatus(), payment.getStatusDetail(), payment.getPaymentTypeId(),
+                    payment.getInstallments(), payment.getIssuerId());
         }
     }
 
