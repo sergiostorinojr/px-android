@@ -65,13 +65,14 @@ public class CheckoutExampleActivity extends AppCompatActivity {
                 .disableInstallmentsReviewScreen()
                 .build();
 
+        mPublicKey = "TEST-e4bdd1cf-bcb2-43f7-b565-ed4c9ea25be7";
         new MercadoPagoCheckout.Builder()
                 .setActivity(this)
                 .setPublicKey(mPublicKey)
-                .setCheckoutPreference(getCheckoutPreference())
-                .setFlowPreference(flowPreference)
-//                .startForPayment();
-                .startForPaymentData();
+                .setCheckoutPreference(new CheckoutPreference("243966003-d64b4270-10c8-43b2-9600-3009cdfe4fa9"))
+//                .setFlowPreference(flowPreference)
+                .startForPayment();
+//                .startForPaymentData();
     }
 
     private void startRyC(PaymentData paymentData) {
