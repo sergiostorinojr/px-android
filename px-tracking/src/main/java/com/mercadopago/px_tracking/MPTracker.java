@@ -13,6 +13,9 @@ import com.mercadopago.px_tracking.model.EventTrackIntent;
 import com.mercadopago.px_tracking.model.PaymentIntent;
 import com.mercadopago.px_tracking.model.ScreenViewEvent;
 import com.mercadopago.px_tracking.model.TrackingIntent;
+import com.mercadopago.px_tracking.strategies.BatchTrackingStrategy;
+import com.mercadopago.px_tracking.strategies.ConnectivityCheckerImpl;
+import com.mercadopago.px_tracking.strategies.EventsDatabaseImpl;
 import com.mercadopago.px_tracking.strategies.RealTimeTrackingStrategy;
 import com.mercadopago.px_tracking.strategies.TrackingStrategy;
 import com.mercadopago.px_tracking.services.MPTrackingService;
@@ -134,7 +137,7 @@ public class MPTracker {
         EventTrackIntent eventTrackIntent = new EventTrackIntent(clientId, appInformation, deviceInfo, events);
         initializeMPTrackingService();
 
-        getTrackingStrategy().trackEvents(eventTrackIntent, context);
+        getTrackingStrategy(context).trackEvents(eventTrackIntent, context);
 
 
         //Notify external listeners
@@ -223,9 +226,9 @@ public class MPTracker {
         return paymentTypeId.equals("credit_card") || paymentTypeId.equals("debit_card") || paymentTypeId.equals("prepaid_card");
     }
 
-    private TrackingStrategy getTrackingStrategy() {
+    private TrackingStrategy getTrackingStrategy(Context context) {
         if (trackingStrategy == null) {
-            trackingStrategy = new RealTimeTrackingStrategy(mMPTrackingService);
+            trackingStrategy = new BatchTrackingStrategy(new EventsDatabaseImpl(context), new ConnectivityCheckerImpl(context), mMPTrackingService);
         }
         return trackingStrategy;
     }
