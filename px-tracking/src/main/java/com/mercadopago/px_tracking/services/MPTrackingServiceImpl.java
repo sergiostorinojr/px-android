@@ -22,14 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MPTrackingServiceImpl implements MPTrackingService {
 
     private static final String BASE_URL = "https://api.mercadopago.com/";
-    private Context context = null;
-
-    public MPTrackingServiceImpl() {}
-
-    public MPTrackingServiceImpl(Context context) {
-        this.context = context;
-    }
-
+    
     private Retrofit getRetrofit(Context context) {
         return new Retrofit.Builder()
                 .client(HttpClientUtil.getClient(context))
