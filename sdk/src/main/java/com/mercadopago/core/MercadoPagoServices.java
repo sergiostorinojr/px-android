@@ -54,6 +54,8 @@ public class MercadoPagoServices {
     public static final int BIN_LENGTH = 6;
 
     private static final String MP_API_BASE_URL = "https://api.mercadopago.com";
+    private static final String LOCALHOST = "http://10.0.3.2:8080";
+
 
     private static final String PAYMENT_RESULT_API_VERSION = "1.3.x";
     private static final String PAYMENT_METHODS_OPTIONS_API_VERSION = "1.3.x";
@@ -88,13 +90,15 @@ public class MercadoPagoServices {
     }
 
     public void getInstructions(Long paymentId, String paymentTypeId, final Callback<Instructions> callback) {
-        CheckoutService service = getDefaultRetrofit().create(CheckoutService.class);
+//        CheckoutService service = getDefaultRetrofit().create(CheckoutService.class);
+        CheckoutService service = getLocalhost().create(CheckoutService.class);
         service.getPaymentResult(mContext.getResources().getConfiguration().locale.getLanguage(), paymentId, this.mPublicKey, paymentTypeId, PAYMENT_RESULT_API_VERSION).enqueue(callback);
     }
 
     public void getPaymentMethodSearch(BigDecimal amount, List<String> excludedPaymentTypes, List<String> excludedPaymentMethods, Payer payer, Site site, final Callback<PaymentMethodSearch> callback) {
         PayerIntent payerIntent = new PayerIntent(payer);
-        CheckoutService service = getDefaultRetrofit().create(CheckoutService.class);
+//        CheckoutService service = getDefaultRetrofit().create(CheckoutService.class);
+        CheckoutService service = getLocalhost().create(CheckoutService.class);
         String separator = ",";
         String excludedPaymentTypesAppended = getListAsString(excludedPaymentTypes, separator);
         String excludedPaymentMethodsAppended = getListAsString(excludedPaymentMethods, separator);
@@ -217,6 +221,16 @@ public class MercadoPagoServices {
             baseUrl = MP_API_BASE_URL;
         }
         return getRetrofit(baseUrl, connectTimeout, readTimeout, writeTimeout);
+    }
+
+    private Retrofit getLocalhost() {
+        String baseUrl;
+        if (mServicePreference != null && !TextUtil.isEmpty(mServicePreference.getDefaultBaseURL())) {
+            baseUrl = mServicePreference.getDefaultBaseURL();
+        } else {
+            baseUrl = LOCALHOST;
+        }
+        return getRetrofit(baseUrl, DEFAULT_CONNECT_TIMEOUT, DEFAULT_READ_TIMEOUT, DEFAULT_WRITE_TIMEOUT);
     }
 
     private Retrofit getGatewayRetrofit() {
