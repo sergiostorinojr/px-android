@@ -485,8 +485,9 @@ public class PaymentVaultActivity extends MercadoPagoBaseActivity implements Pay
             this.finish();
         } else {
             //When it comes back from payment vault "children" view
-            initializeMPTracker();
-            trackInitialScreen();
+            //TODO ver
+//            initializeMPTracker();
+//            trackInitialScreen();
 
             if (shouldFinishOnBack(data)) {
                 setResult(Activity.RESULT_CANCELED, data);
@@ -517,8 +518,9 @@ public class PaymentVaultActivity extends MercadoPagoBaseActivity implements Pay
 
             finishWithCardResult();
         } else {
-            initializeMPTracker();
-            trackChildrenScreen();
+            //TODO ver
+//            initializeMPTracker();
+//            trackChildrenScreen();
 
             if (shouldFinishOnBack(data)) {
                 setResult(Activity.RESULT_CANCELED, data);

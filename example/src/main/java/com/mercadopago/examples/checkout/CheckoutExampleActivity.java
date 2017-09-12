@@ -12,16 +12,23 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mercadopago.constants.Sites;
 import com.mercadopago.core.MercadoPagoCheckout;
 import com.mercadopago.examples.R;
 import com.mercadopago.examples.utils.ColorPickerDialog;
 import com.mercadopago.examples.utils.ExamplesUtils;
 import com.mercadopago.exceptions.MercadoPagoError;
+import com.mercadopago.model.Item;
 import com.mercadopago.model.Payment;
+import com.mercadopago.model.PaymentData;
+import com.mercadopago.model.PaymentResult;
 import com.mercadopago.preferences.CheckoutPreference;
 import com.mercadopago.preferences.DecorationPreference;
+import com.mercadopago.preferences.FlowPreference;
 import com.mercadopago.util.JsonUtil;
 import com.mercadopago.util.LayoutUtil;
+
+import java.math.BigDecimal;
 
 public class CheckoutExampleActivity extends AppCompatActivity {
 
@@ -68,14 +75,37 @@ public class CheckoutExampleActivity extends AppCompatActivity {
     }
 
     private void startMercadoPagoCheckout() {
+        CheckoutPreference checkoutPreference = new CheckoutPreference("273000304-1017379b-b2ce-4e7a-956d-64c5bc4b2049");
+
+        mPublicKey = "TEST-5177b088-34ac-4bcb-93aa-ba76ca3fe04b";
+
         new MercadoPagoCheckout.Builder()
                 .setActivity(this)
                 .setPublicKey(mPublicKey)
-                .setCheckoutPreference(getCheckoutPreference())
+                .setCheckoutPreference(checkoutPreference)
                 .setDecorationPreference(getCurrentDecorationPreference())
-                .startForPayment();
+                .startForPaymentData();
     }
 
+    private void startWithPaymentResult(PaymentData paymentData) {
+        CheckoutPreference checkoutPreference = new CheckoutPreference("273000304-1017379b-b2ce-4e7a-956d-64c5bc4b2049");
+
+        mPublicKey = "TEST-5177b088-34ac-4bcb-93aa-ba76ca3fe04b";
+
+        PaymentResult paymentResult = new PaymentResult.Builder()
+                .setPaymentData(paymentData)
+                .setPaymentId(6479879L)
+                .setPaymentStatus(Payment.StatusCodes.STATUS_PENDING)
+                .setPaymentStatusDetail(Payment.StatusCodes.STATUS_DETAIL_PENDING_WAITING_PAYMENT)
+                .build();
+
+        new MercadoPagoCheckout.Builder()
+                .setActivity(this)
+                .setPublicKey(mPublicKey)
+                .setCheckoutPreference(checkoutPreference)
+                .setPaymentResult(paymentResult)
+                .startForPaymentData();
+    }
 
     private CheckoutPreference getCheckoutPreference() {
         return new CheckoutPreference(mCheckoutPreferenceId);
@@ -89,6 +119,9 @@ public class CheckoutExampleActivity extends AppCompatActivity {
             if (resultCode == MercadoPagoCheckout.PAYMENT_RESULT_CODE) {
                 Payment payment = JsonUtil.getInstance().fromJson(data.getStringExtra("payment"), Payment.class);
                 Toast.makeText(mActivity, "Pago con status: " + payment.getStatus(), Toast.LENGTH_SHORT).show();
+            } else if (resultCode == MercadoPagoCheckout.PAYMENT_DATA_RESULT_CODE) {
+                PaymentData paymentData = JsonUtil.getInstance().fromJson(data.getStringExtra("paymentData"), PaymentData.class);
+                startWithPaymentResult(paymentData);
             } else if (resultCode == RESULT_CANCELED) {
                 if (data != null && data.getStringExtra("mercadoPagoError") != null) {
                     MercadoPagoError mercadoPagoError = JsonUtil.getInstance().fromJson(data.getStringExtra("mercadoPagoError"), MercadoPagoError.class);

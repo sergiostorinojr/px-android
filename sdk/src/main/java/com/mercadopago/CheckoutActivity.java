@@ -1,5 +1,6 @@
 package com.mercadopago;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -18,6 +19,7 @@ import com.mercadopago.model.PaymentMethod;
 import com.mercadopago.model.PaymentMethodSearchItem;
 import com.mercadopago.model.PaymentRecovery;
 import com.mercadopago.model.PaymentResult;
+import com.mercadopago.model.Site;
 import com.mercadopago.model.Token;
 import com.mercadopago.preferences.CheckoutPreference;
 import com.mercadopago.preferences.DecorationPreference;
@@ -132,7 +134,13 @@ public class CheckoutActivity extends MercadoPagoBaseActivity implements Checkou
     @Override
     public void initializeMPTracker() {
         //Initialize tracker before creating a token
-        MPTracker.getInstance().initTracker(mMerchantPublicKey, mCheckoutPresenter.getCheckoutPreference().getSite().getId(), BuildConfig.VERSION_NAME, getApplicationContext());
+        CheckoutPreference checkoutPreference = mCheckoutPresenter.getCheckoutPreference();
+        Site site = checkoutPreference.getSite();
+        String siteId = site.getId();
+        Context context = getApplicationContext();
+
+        MPTracker mpTracker = MPTracker.getInstance();
+        mpTracker.initTracker(mMerchantPublicKey, siteId, BuildConfig.VERSION_NAME, context);
     }
 
     @Override

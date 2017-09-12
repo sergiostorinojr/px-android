@@ -160,7 +160,8 @@ public class InstructionsActivity extends MercadoPagoBaseActivity {
 
     protected void onValidStart() {
         initializePaymentData();
-        trackScreen();
+        //TODO ver
+//        trackScreen();
         mBackPressedOnce = false;
         mMercadoPagoServices = new MercadoPagoServices.Builder()
                 .setContext(this)

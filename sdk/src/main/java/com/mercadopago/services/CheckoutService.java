@@ -35,6 +35,7 @@ public interface CheckoutService {
     @GET("/payments/{payment_id}/results")
     MPCall<Instructions> getPaymentResult(@Header("Accept-Language") String locale, @Path(value = "payment_id", encoded = true) Long paymentId, @Query("public_key") String mKey, @Query("payment_type") String paymentTypeId, @Query("api_version") String apiVersion);
 
-    @GET("/" + BuildConfig.API_VERSION + "/checkout/preferences/{preference_id}")
+    //    @GET("/" + BuildConfig.API_VERSION + "/checkout/preferences/{preference_id}")
+    @GET("/v1/checkout/preferences/{preference_id}")
     MPCall<CheckoutPreference> getPreference(@Path(value = "preference_id", encoded = true) String checkoutPreferenceId, @Query("public_key") String publicKey);
 }
