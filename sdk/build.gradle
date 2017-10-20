@@ -53,7 +53,7 @@ android {
     }
     buildTypes {
         debug {
-//            testCoverageEnabled true
+            testCoverageEnabled true
             multiDexEnabled true
             versionNameSuffix " Debug"
             debuggable true
@@ -115,7 +115,7 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.mercadopago:tracking:2.2.0-beta3'
+    compile 'com.mercadopago:tracking:2.2.0'
 }
 
 configurations {
