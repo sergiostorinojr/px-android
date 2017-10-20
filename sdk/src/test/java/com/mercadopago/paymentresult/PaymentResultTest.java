@@ -6,9 +6,7 @@ import com.mercadopago.model.Payment;
 import com.mercadopago.model.PaymentData;
 import com.mercadopago.model.PaymentResult;
 import com.mercadopago.model.Site;
-import com.mercadopago.presenters.PaymentResultPresenter;
 import com.mercadopago.providers.PaymentResultProvider;
-import com.mercadopago.views.PaymentResultView;
 
 import junit.framework.Assert;
 
@@ -35,7 +33,7 @@ public class PaymentResultTest {
         presenter.setSite(Sites.ARGENTINA);
         presenter.setDiscountEnabled(Boolean.TRUE);
 
-        MockedView mockedView = new MockedView();
+        MockedPropsView mockedView = new MockedPropsView();
         MockedProvider mockedProvider = new MockedProvider();
 
         presenter.attachView(mockedView);
@@ -64,7 +62,7 @@ public class PaymentResultTest {
         presenter.setSite(Sites.ARGENTINA);
         presenter.setDiscountEnabled(Boolean.TRUE);
 
-        MockedView mockedView = new MockedView();
+        MockedPropsView mockedView = new MockedPropsView();
         MockedProvider mockedProvider = new MockedProvider();
 
         presenter.attachView(mockedView);
@@ -93,7 +91,7 @@ public class PaymentResultTest {
         presenter.setSite(Sites.ARGENTINA);
         presenter.setDiscountEnabled(Boolean.TRUE);
 
-        MockedView mockedView = new MockedView();
+        MockedPropsView mockedView = new MockedPropsView();
         MockedProvider mockedProvider = new MockedProvider();
 
         presenter.attachView(mockedView);
@@ -122,7 +120,7 @@ public class PaymentResultTest {
         presenter.setSite(Sites.ARGENTINA);
         presenter.setDiscountEnabled(Boolean.TRUE);
 
-        MockedView mockedView = new MockedView();
+        MockedPropsView mockedView = new MockedPropsView();
         MockedProvider mockedProvider = new MockedProvider();
 
         presenter.attachView(mockedView);
@@ -150,7 +148,7 @@ public class PaymentResultTest {
         presenter.setSite(Sites.ARGENTINA);
         presenter.setDiscountEnabled(Boolean.TRUE);
 
-        MockedView mockedView = new MockedView();
+        MockedPropsView mockedView = new MockedPropsView();
         MockedProvider mockedProvider = new MockedProvider();
 
         presenter.attachView(mockedView);
@@ -178,7 +176,7 @@ public class PaymentResultTest {
         presenter.setSite(Sites.ARGENTINA);
         presenter.setDiscountEnabled(Boolean.TRUE);
 
-        MockedView mockedView = new MockedView();
+        MockedPropsView mockedView = new MockedPropsView();
         MockedProvider mockedProvider = new MockedProvider();
 
         presenter.attachView(mockedView);
@@ -206,7 +204,7 @@ public class PaymentResultTest {
         presenter.setSite(Sites.ARGENTINA);
         presenter.setDiscountEnabled(Boolean.TRUE);
 
-        MockedView mockedView = new MockedView();
+        MockedPropsView mockedView = new MockedPropsView();
         MockedProvider mockedProvider = new MockedProvider();
 
         presenter.attachView(mockedView);
@@ -226,7 +224,7 @@ public class PaymentResultTest {
         presenter.setSite(Sites.ARGENTINA);
         presenter.setDiscountEnabled(Boolean.TRUE);
 
-        MockedView mockedView = new MockedView();
+        MockedPropsView mockedView = new MockedPropsView();
         MockedProvider mockedProvider = new MockedProvider();
 
         presenter.attachView(mockedView);
@@ -254,7 +252,7 @@ public class PaymentResultTest {
         presenter.setSite(Sites.ARGENTINA);
         presenter.setDiscountEnabled(Boolean.TRUE);
 
-        MockedView mockedView = new MockedView();
+        MockedPropsView mockedView = new MockedPropsView();
         MockedProvider mockedProvider = new MockedProvider();
 
         presenter.attachView(mockedView);
@@ -282,7 +280,7 @@ public class PaymentResultTest {
         presenter.setSite(Sites.ARGENTINA);
         presenter.setDiscountEnabled(Boolean.TRUE);
 
-        MockedView mockedView = new MockedView();
+        MockedPropsView mockedView = new MockedPropsView();
         MockedProvider mockedProvider = new MockedProvider();
 
         presenter.attachView(mockedView);
@@ -293,7 +291,7 @@ public class PaymentResultTest {
         Assert.assertTrue(mockedView.rejectionShown);
     }
 
-    private class MockedView implements PaymentResultView {
+    private class MockedPropsView implements PaymentResultPropsView {
         private boolean congratsShown = false;
         private boolean callForAuthorizeShown = false;
         private boolean rejectionShown = false;

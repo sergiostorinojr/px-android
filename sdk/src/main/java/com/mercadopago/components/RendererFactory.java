@@ -7,6 +7,11 @@ import android.util.Log;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.mercadopago.paymentresult.PaymentResultFooterComponent;
+import com.mercadopago.paymentresult.PaymentResultFooterRenderer;
+import com.mercadopago.paymentresult.PaymentResultHeaderComponent;
+import com.mercadopago.paymentresult.PaymentResultHeaderRenderer;
+
 /**
  * Created by vaserber on 10/20/17.
  */
@@ -34,4 +39,24 @@ public class RendererFactory {
         }
         return renderer;
     }
+
+//    public static Renderer<PaymentResultHeaderComponent> createPaymentResultHeaderRenderer(final Context context,
+//                                                                                           final PaymentResultHeaderComponent component) {
+//        PaymentResultHeaderRenderer renderer = new PaymentResultHeaderRenderer();
+//        renderer.setContext(context);
+//        renderer.setComponent(component);
+//        renderer.init();
+//
+//        return renderer;
+//    }
+//
+//    public static Renderer<PaymentResultFooterComponent> createPaymentResultFooterRenderer(final Context context,
+//                                                                                           final PaymentResultFooterComponent component) {
+//        PaymentResultFooterRenderer renderer = new PaymentResultFooterRenderer();
+//        renderer.setContext(context);
+//        renderer.setComponent(component);
+//        renderer.init();
+//
+//        return renderer;
+//    }
 }
