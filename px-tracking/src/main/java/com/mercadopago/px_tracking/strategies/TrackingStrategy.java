@@ -1,10 +1,10 @@
-package com.mercadopago.px_tracking.strategies;
+package com.mercadopago.tracking.strategies;
 
 import android.content.Context;
 
-import com.mercadopago.px_tracking.model.AppInformation;
-import com.mercadopago.px_tracking.model.DeviceInfo;
-import com.mercadopago.px_tracking.model.Event;
+import com.mercadopago.tracking.model.AppInformation;
+import com.mercadopago.tracking.model.DeviceInfo;
+import com.mercadopago.tracking.model.Event;
 
 public abstract class TrackingStrategy {
 

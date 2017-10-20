@@ -1,4 +1,4 @@
-package com.mercadopago.px_tracking.utils;
+package com.mercadopago.tracking.utils;
 
 import android.content.Context;
 

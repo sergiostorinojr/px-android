@@ -1,6 +1,6 @@
-package com.mercadopago.px_tracking;
+package com.mercadopago.tracking;
 
-import com.mercadopago.px_tracking.model.DeviceInfo;
+import com.mercadopago.tracking.model.DeviceInfo;
 
 import org.junit.Test;
 

@@ -1,12 +1,12 @@
-package com.mercadopago.px_tracking.mocks;
+package com.mercadopago.tracking.mocks;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 
-import com.mercadopago.px_tracking.model.AppInformation;
-import com.mercadopago.px_tracking.model.DeviceInfo;
-import com.mercadopago.px_tracking.model.EventTrackIntent;
-import com.mercadopago.px_tracking.utils.JsonConverter;
+import com.mercadopago.tracking.model.AppInformation;
+import com.mercadopago.tracking.model.DeviceInfo;
+import com.mercadopago.tracking.model.EventTrackIntent;
+import com.mercadopago.tracking.utils.JsonConverter;
 
 import java.io.InputStream;
 

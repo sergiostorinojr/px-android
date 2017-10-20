@@ -1,4 +1,4 @@
-package com.mercadopago.px_tracking.model;
+package com.mercadopago.tracking.model;
 
 import java.sql.Timestamp;
 import java.util.HashMap;

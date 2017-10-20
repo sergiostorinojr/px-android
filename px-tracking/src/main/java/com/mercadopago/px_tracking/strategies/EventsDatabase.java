@@ -1,7 +1,7 @@
-package com.mercadopago.px_tracking.strategies;
+package com.mercadopago.tracking.strategies;
 
 
-import com.mercadopago.px_tracking.model.Event;
+import com.mercadopago.tracking.model.Event;
 
 import java.util.List;
 

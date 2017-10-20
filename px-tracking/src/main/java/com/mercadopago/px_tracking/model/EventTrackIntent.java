@@ -1,4 +1,4 @@
-package com.mercadopago.px_tracking.model;
+package com.mercadopago.tracking.model;
 
 import java.util.ArrayList;
 import java.util.List;

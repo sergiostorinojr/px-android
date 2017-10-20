@@ -1,26 +1,26 @@
-package com.mercadopago.px_tracking.tracker;
+package com.mercadopago.tracking.tracker;
 
 import android.content.Context;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.mercadopago.px_tracking.listeners.TracksListener;
-import com.mercadopago.px_tracking.model.ActionEvent;
-import com.mercadopago.px_tracking.model.AppInformation;
-import com.mercadopago.px_tracking.model.DeviceInfo;
-import com.mercadopago.px_tracking.model.Event;
-import com.mercadopago.px_tracking.model.PaymentIntent;
-import com.mercadopago.px_tracking.model.ScreenViewEvent;
-import com.mercadopago.px_tracking.model.TrackingIntent;
-import com.mercadopago.px_tracking.strategies.BatchTrackingStrategy;
-import com.mercadopago.px_tracking.strategies.ConnectivityCheckerImpl;
-import com.mercadopago.px_tracking.strategies.EventsDatabaseImpl;
-import com.mercadopago.px_tracking.strategies.ForcedStrategy;
-import com.mercadopago.px_tracking.strategies.TrackingStrategy;
-import com.mercadopago.px_tracking.services.MPTrackingService;
-import com.mercadopago.px_tracking.services.MPTrackingServiceImpl;
-import com.mercadopago.px_tracking.utils.JsonConverter;
-import com.mercadopago.px_tracking.utils.TrackingUtil;
+import com.mercadopago.tracking.listeners.TracksListener;
+import com.mercadopago.tracking.model.ActionEvent;
+import com.mercadopago.tracking.model.AppInformation;
+import com.mercadopago.tracking.model.DeviceInfo;
+import com.mercadopago.tracking.model.Event;
+import com.mercadopago.tracking.model.PaymentIntent;
+import com.mercadopago.tracking.model.ScreenViewEvent;
+import com.mercadopago.tracking.model.TrackingIntent;
+import com.mercadopago.tracking.strategies.BatchTrackingStrategy;
+import com.mercadopago.tracking.strategies.ConnectivityCheckerImpl;
+import com.mercadopago.tracking.strategies.EventsDatabaseImpl;
+import com.mercadopago.tracking.strategies.ForcedStrategy;
+import com.mercadopago.tracking.strategies.TrackingStrategy;
+import com.mercadopago.tracking.services.MPTrackingService;
+import com.mercadopago.tracking.services.MPTrackingServiceImpl;
+import com.mercadopago.tracking.utils.JsonConverter;
+import com.mercadopago.tracking.utils.TrackingUtil;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;

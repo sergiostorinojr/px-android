@@ -1,11 +1,11 @@
-package com.mercadopago.px_tracking.mocks;
+package com.mercadopago.tracking.mocks;
 
 import android.content.Context;
 
-import com.mercadopago.px_tracking.model.EventTrackIntent;
-import com.mercadopago.px_tracking.model.PaymentIntent;
-import com.mercadopago.px_tracking.model.TrackingIntent;
-import com.mercadopago.px_tracking.services.MPTrackingService;
+import com.mercadopago.tracking.model.EventTrackIntent;
+import com.mercadopago.tracking.model.PaymentIntent;
+import com.mercadopago.tracking.model.TrackingIntent;
+import com.mercadopago.tracking.services.MPTrackingService;
 
 import retrofit2.Callback;
 

@@ -1,4 +1,4 @@
-package com.mercadopago.px_tracking.listeners;
+package com.mercadopago.tracking.listeners;
 
 import java.util.Map;
 

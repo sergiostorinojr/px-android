@@ -1,4 +1,4 @@
-package com.mercadopago.px_tracking.model;
+package com.mercadopago.tracking.model;
 
 /**
  * Created by vaserber on 6/5/17.

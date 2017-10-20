@@ -1,7 +1,7 @@
-package com.mercadopago.px_tracking.utils;
+package com.mercadopago.tracking.utils;
 
-import com.mercadopago.px_tracking.model.Event;
-import com.mercadopago.px_tracking.model.ScreenViewEvent;
+import com.mercadopago.tracking.model.Event;
+import com.mercadopago.tracking.model.ScreenViewEvent;
 
 /**
  * Created by marlanti on 8/7/17.

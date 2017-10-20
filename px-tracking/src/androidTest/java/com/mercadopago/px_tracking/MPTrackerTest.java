@@ -1,24 +1,24 @@
-package com.mercadopago.px_tracking;
+package com.mercadopago.tracking;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.filters.LargeTest;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.mercadopago.px_tracking.listeners.TracksListener;
-import com.mercadopago.px_tracking.mocks.MPMockedTrackingService;
-import com.mercadopago.px_tracking.model.ActionEvent;
-import com.mercadopago.px_tracking.model.AppInformation;
-import com.mercadopago.px_tracking.model.DeviceInfo;
-import com.mercadopago.px_tracking.model.ErrorEvent;
-import com.mercadopago.px_tracking.model.Event;
-import com.mercadopago.px_tracking.model.PaymentIntent;
-import com.mercadopago.px_tracking.model.ScreenViewEvent;
-import com.mercadopago.px_tracking.model.StackTraceInfo;
-import com.mercadopago.px_tracking.model.TrackingIntent;
-import com.mercadopago.px_tracking.strategies.TrackingStrategy;
-import com.mercadopago.px_tracking.tracker.MPTracker;
-import com.mercadopago.px_tracking.utils.TrackingUtil;
+import com.mercadopago.tracking.listeners.TracksListener;
+import com.mercadopago.tracking.mocks.MPMockedTrackingService;
+import com.mercadopago.tracking.model.ActionEvent;
+import com.mercadopago.tracking.model.AppInformation;
+import com.mercadopago.tracking.model.DeviceInfo;
+import com.mercadopago.tracking.model.ErrorEvent;
+import com.mercadopago.tracking.model.Event;
+import com.mercadopago.tracking.model.PaymentIntent;
+import com.mercadopago.tracking.model.ScreenViewEvent;
+import com.mercadopago.tracking.model.StackTraceInfo;
+import com.mercadopago.tracking.model.TrackingIntent;
+import com.mercadopago.tracking.strategies.TrackingStrategy;
+import com.mercadopago.tracking.tracker.MPTracker;
+import com.mercadopago.tracking.utils.TrackingUtil;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

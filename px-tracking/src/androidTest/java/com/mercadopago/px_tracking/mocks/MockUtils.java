@@ -1,4 +1,4 @@
-package com.mercadopago.px_tracking.mocks;
+package com.mercadopago.tracking.mocks;
 
 import android.content.Context;
 

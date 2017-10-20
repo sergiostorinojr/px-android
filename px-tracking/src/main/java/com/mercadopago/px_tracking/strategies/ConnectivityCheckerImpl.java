@@ -1,4 +1,4 @@
-package com.mercadopago.px_tracking.strategies;
+package com.mercadopago.tracking.strategies;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

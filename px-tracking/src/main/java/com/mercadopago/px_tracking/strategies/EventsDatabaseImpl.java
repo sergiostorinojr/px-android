@@ -1,4 +1,4 @@
-package com.mercadopago.px_tracking.strategies;
+package com.mercadopago.tracking.strategies;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,9 +8,9 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.mercadopago.px_tracking.model.Event;
-import com.mercadopago.px_tracking.utils.EventFactory;
-import com.mercadopago.px_tracking.utils.JsonConverter;
+import com.mercadopago.tracking.model.Event;
+import com.mercadopago.tracking.utils.EventFactory;
+import com.mercadopago.tracking.utils.JsonConverter;
 
 import java.util.ArrayList;
 import java.util.List;

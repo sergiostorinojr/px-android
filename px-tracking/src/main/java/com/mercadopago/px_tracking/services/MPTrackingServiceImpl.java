@@ -1,13 +1,13 @@
-package com.mercadopago.px_tracking.services;
+package com.mercadopago.tracking.services;
 
 import android.content.Context;
 import android.util.Log;
 
-import com.mercadopago.px_tracking.model.EventTrackIntent;
-import com.mercadopago.px_tracking.model.PaymentIntent;
-import com.mercadopago.px_tracking.model.TrackingIntent;
-import com.mercadopago.px_tracking.utils.HttpClientUtil;
-import com.mercadopago.px_tracking.utils.JsonConverter;
+import com.mercadopago.tracking.model.EventTrackIntent;
+import com.mercadopago.tracking.model.PaymentIntent;
+import com.mercadopago.tracking.model.TrackingIntent;
+import com.mercadopago.tracking.utils.HttpClientUtil;
+import com.mercadopago.tracking.utils.JsonConverter;
 
 import retrofit2.Call;
 import retrofit2.Callback;

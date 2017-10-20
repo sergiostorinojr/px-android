@@ -10,7 +10,7 @@ import com.mercadopago.model.PaymentMethod;
 import com.mercadopago.model.Token;
 import com.mercadopago.mvp.OnResourcesRetrievedCallback;
 import com.mercadopago.mvp.ResourcesProvider;
-import com.mercadopago.px_tracking.MPTrackingContext;
+import com.mercadopago.tracking.MPTrackingContext;
 
 import java.math.BigDecimal;
 import java.util.List;

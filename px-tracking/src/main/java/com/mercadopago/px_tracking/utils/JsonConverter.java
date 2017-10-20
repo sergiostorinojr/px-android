@@ -1,4 +1,4 @@
-package com.mercadopago.px_tracking.utils;
+package com.mercadopago.tracking.utils;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;

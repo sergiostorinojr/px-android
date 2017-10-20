@@ -1,13 +1,13 @@
-package com.mercadopago.px_tracking;
+package com.mercadopago.tracking;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 
-import com.mercadopago.px_tracking.mocks.EventMock;
-import com.mercadopago.px_tracking.model.Event;
-import com.mercadopago.px_tracking.model.ScreenViewEvent;
-import com.mercadopago.px_tracking.strategies.EventsDatabase;
-import com.mercadopago.px_tracking.strategies.EventsDatabaseImpl;
+import com.mercadopago.tracking.mocks.EventMock;
+import com.mercadopago.tracking.model.Event;
+import com.mercadopago.tracking.model.ScreenViewEvent;
+import com.mercadopago.tracking.strategies.EventsDatabase;
+import com.mercadopago.tracking.strategies.EventsDatabaseImpl;
 
 import org.junit.Test;
 
