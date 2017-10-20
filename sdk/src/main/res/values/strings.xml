@@ -137,7 +137,7 @@
     <string name="mpsdk_subtitle_rejection_high_risk">Si quieres pagar con el dinero de tu cuenta, contactate con Atención al Cliente de Mercado Pago. O si prefieres, puedes elegir otro medio de pago.</string>
     <string name="mpsdk_title_rejection_max_attempts">Llegaste al límite de intentos permitidos</string>
     <string name="mpsdk_subtitle_rejection_max_attempts">Elige otra tarjeta u otro medio de pago.</string>
-    <string name="mpsdk_rejection_title">Algo salió mal…</string>
+    <string name="mpsdk_rejection_titleRendererFactory.java">Algo salió mal…</string>
 
     <!-- Error messages -->
     <string name="mpsdk_error_message_invalid_amount">Monto inválido</string>

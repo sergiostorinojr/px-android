@@ -17,9 +17,6 @@ public class ComponentManager<T> implements ActionDispatcher, MutatorPropsListen
 
     public ComponentManager(@NonNull final Activity activity) {
         this.activity = activity;
-
-        //Register renderers here. For example:
-        //rendererRegistry.put(ExampleComponent.class, ExampleRenderer.class);
     }
 
     public void setComponent(@NonNull final Component component) {

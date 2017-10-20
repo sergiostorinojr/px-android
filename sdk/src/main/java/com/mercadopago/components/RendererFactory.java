@@ -15,9 +15,6 @@ public class RendererFactory {
 
     private static final Map<Class, Class> rendererRegistry = new HashMap<>();
 
-
-//    Create renderers and set their components and context here. For example:
-
     public static void register(@NonNull final Class component, @NonNull final Class renderer) {
         rendererRegistry.put(component, renderer);
     }
