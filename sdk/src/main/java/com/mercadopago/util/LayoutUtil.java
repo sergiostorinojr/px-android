@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.LinearLayout;
 
 import com.mercadopago.R;
 import com.mercadopago.customviews.MPEditText;
@@ -64,6 +65,24 @@ public class LayoutUtil {
         params.height = (int) context.getResources().getDimension(height);
         params.width = (int) context.getResources().getDimension(width);
         viewGroup.setLayoutParams(params);
+    }
+
+    public static void convertLayoutToMinHeight(ViewGroup viewGroup) {
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        viewGroup.setLayoutParams(params);
+    }
+
+    public static void convertLayoutToMaxHeight(ViewGroup viewGroup) {
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                0,
+                1.0f
+        );
+        viewGroup.setLayoutParams(params);
+
     }
 
 }

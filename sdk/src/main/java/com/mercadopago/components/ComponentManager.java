@@ -3,6 +3,11 @@ package com.mercadopago.components;
 import android.app.Activity;
 import android.support.annotation.NonNull;
 
+import com.mercadopago.paymentresult.PaymentResultContainer;
+import com.mercadopago.paymentresult.PaymentResultHeaderComponent;
+import com.mercadopago.paymentresult.PaymentResultHeaderRenderer;
+import com.mercadopago.paymentresult.PaymentResultRenderer;
+
 /**
  * Created by vaserber on 10/20/17.
  */
