@@ -23,7 +23,7 @@ import com.mercadopago.model.PaymentResultAction;
 import com.mercadopago.observers.TimerObserver;
 import com.mercadopago.preferences.PaymentResultScreenPreference;
 import com.mercadopago.px_tracking.utils.TrackingUtil;
-import com.mercadopago.tracker.MPTrackingContext;
+import com.mercadopago.px_tracking.MPTrackingContext;
 import com.mercadopago.px_tracking.model.ScreenViewEvent;
 import com.mercadopago.util.ErrorUtil;
 import com.mercadopago.util.JsonUtil;

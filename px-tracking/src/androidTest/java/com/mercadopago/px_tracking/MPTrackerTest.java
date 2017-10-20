@@ -17,6 +17,7 @@ import com.mercadopago.px_tracking.model.ScreenViewEvent;
 import com.mercadopago.px_tracking.model.StackTraceInfo;
 import com.mercadopago.px_tracking.model.TrackingIntent;
 import com.mercadopago.px_tracking.strategies.TrackingStrategy;
+import com.mercadopago.px_tracking.tracker.MPTracker;
 import com.mercadopago.px_tracking.utils.TrackingUtil;
 
 import org.junit.Test;

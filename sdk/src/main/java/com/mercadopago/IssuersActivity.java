@@ -30,7 +30,7 @@ import com.mercadopago.presenters.IssuersPresenter;
 import com.mercadopago.providers.IssuersProviderImpl;
 import com.mercadopago.px_tracking.model.ScreenViewEvent;
 import com.mercadopago.px_tracking.utils.TrackingUtil;
-import com.mercadopago.tracker.MPTrackingContext;
+import com.mercadopago.px_tracking.MPTrackingContext;
 import com.mercadopago.uicontrollers.FontCache;
 import com.mercadopago.uicontrollers.card.CardRepresentationModes;
 import com.mercadopago.uicontrollers.card.FrontCardView;
