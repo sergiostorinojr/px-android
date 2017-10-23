@@ -1,6 +1,5 @@
-package com.mercadopago.paymentresult;
+package com.mercadopago.paymentresult.renderers;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -8,6 +7,7 @@ import android.widget.TextView;
 
 import com.mercadopago.R;
 import com.mercadopago.components.Renderer;
+import com.mercadopago.paymentresult.components.PaymentResultBodyComponent;
 import com.mercadopago.util.LayoutUtil;
 
 /**
@@ -22,23 +22,20 @@ public class PaymentResultBodyRenderer extends Renderer<PaymentResultBodyCompone
 
     @Override
     public View render() {
+        bodyView = LayoutInflater.from(context).inflate(R.layout.mpsdk_payment_result_body, null, false);
+        bodyContainer = (FrameLayout) bodyView.findViewById(R.id.mpsdkPaymentResultContainerBody);
+        textView = (TextView) bodyView.findViewById(R.id.bodyText);
+
         renderHeight();
         textView.setText(component.getProps().status);
         return bodyView;
     }
 
-    @Override
-    protected void bindViews(Context context) {
-        bodyView = LayoutInflater.from(context).inflate(R.layout.mpsdk_payment_result_body, null, false);
-        bodyContainer = (FrameLayout) bodyView.findViewById(R.id.mpsdkPaymentResultContainerBody);
-        textView = (TextView) bodyView.findViewById(R.id.bodyText);
-    }
-
     private void renderHeight() {
-        if (component.getProps().height.equals("minHeight")) {
-            LayoutUtil.convertLayoutToMinHeight(bodyContainer);
-        } else if (component.getProps().height.equals("maxHeight")) {
-            LayoutUtil.convertLayoutToMaxHeight(bodyContainer);
+        if (component.getProps().height.equals("wrap")) {
+            wrapHeight(bodyContainer);
+        } else if (component.getProps().height.equals("stretch")) {
+            stretchHeight(bodyContainer);
         }
     }
 }

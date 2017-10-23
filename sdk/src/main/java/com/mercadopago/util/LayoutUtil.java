@@ -67,22 +67,4 @@ public class LayoutUtil {
         viewGroup.setLayoutParams(params);
     }
 
-    public static void convertLayoutToMinHeight(ViewGroup viewGroup) {
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        );
-        viewGroup.setLayoutParams(params);
-    }
-
-    public static void convertLayoutToMaxHeight(ViewGroup viewGroup) {
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                0,
-                1.0f
-        );
-        viewGroup.setLayoutParams(params);
-
-    }
-
 }

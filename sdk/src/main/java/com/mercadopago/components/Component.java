@@ -19,6 +19,8 @@ public abstract class Component<T> {
     public Component(@NonNull final T props, @NonNull final ActionDispatcher dispatcher) {
         this.props = props;
         this.dispatcher = dispatcher;
+        //TODO: move lifecycle methods calls to component manager
+        setProps(props);
         applyProps(props);
     }
 
