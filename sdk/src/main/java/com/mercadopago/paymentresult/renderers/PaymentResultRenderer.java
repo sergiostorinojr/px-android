@@ -17,6 +17,7 @@ public class PaymentResultRenderer extends Renderer<PaymentResultContainer> {
 
     private View containerView;
     private Renderer headerRenderer;
+    private Renderer bodyRenderer;
     private Renderer footerRenderer;
     private ViewGroup parentViewGroup;
 
@@ -29,6 +30,10 @@ public class PaymentResultRenderer extends Renderer<PaymentResultContainer> {
         View header = renderHeader();
         this.parentViewGroup.addView(header);
 
+        bodyRenderer = RendererFactory.create(context, component.getBodyComponent());
+        View body = renderBody();
+        this.parentViewGroup.addView(body);
+
         footerRenderer = RendererFactory.create(context, component.getFooterComponent());
         View footer = renderFooter();
         this.parentViewGroup.addView(footer);
@@ -38,6 +43,10 @@ public class PaymentResultRenderer extends Renderer<PaymentResultContainer> {
 
     private View renderHeader() {
         return headerRenderer.render();
+    }
+
+    private View renderBody() {
+        return bodyRenderer.render();
     }
 
     private View renderFooter() {

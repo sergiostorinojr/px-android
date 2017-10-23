@@ -26,16 +26,10 @@ public class PaymentResultBodyRenderer extends Renderer<PaymentResultBodyCompone
         bodyContainer = (FrameLayout) bodyView.findViewById(R.id.mpsdkPaymentResultContainerBody);
         textView = (TextView) bodyView.findViewById(R.id.bodyText);
 
-        renderHeight();
+        stretchHeight(bodyContainer);
+
         textView.setText(component.getProps().status);
         return bodyView;
     }
 
-    private void renderHeight() {
-        if (component.getProps().height.equals("wrap")) {
-            wrapHeight(bodyContainer);
-        } else if (component.getProps().height.equals("stretch")) {
-            stretchHeight(bodyContainer);
-        }
-    }
 }

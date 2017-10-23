@@ -35,7 +35,7 @@ public class PaymentResultPropsMutator implements Mutator, PaymentResultPropsVie
     public void setPropPaymentResult(final PaymentResult paymentResult) {
         props = props.toBuilder()
                 .setPaymentResult(paymentResult)
-                .setHeaderMode("stretch")
+                .setHeaderMode("wrap")
                 .build();
         notifyPropsChanged();
     }

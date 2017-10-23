@@ -11,10 +11,12 @@ import com.mercadopago.core.MercadoPagoCheckout;
 import com.mercadopago.core.MercadoPagoComponents;
 import com.mercadopago.model.PaymentResult;
 import com.mercadopago.model.Site;
+import com.mercadopago.paymentresult.components.IconComponent;
 import com.mercadopago.paymentresult.components.PaymentResultBodyComponent;
 import com.mercadopago.paymentresult.components.PaymentResultContainer;
 import com.mercadopago.paymentresult.components.PaymentResultFooterComponent;
 import com.mercadopago.paymentresult.components.PaymentResultHeaderComponent;
+import com.mercadopago.paymentresult.renderers.IconRenderer;
 import com.mercadopago.paymentresult.renderers.PaymentResultBodyRenderer;
 import com.mercadopago.paymentresult.renderers.PaymentResultFooterRenderer;
 import com.mercadopago.paymentresult.renderers.PaymentResultHeaderRenderer;
@@ -69,6 +71,7 @@ public class PaymentResultActivity extends AppCompatActivity {
         RendererFactory.register(PaymentResultHeaderComponent.class, PaymentResultHeaderRenderer.class);
         RendererFactory.register(PaymentResultBodyComponent.class, PaymentResultBodyRenderer.class);
         RendererFactory.register(PaymentResultFooterComponent.class, PaymentResultFooterRenderer.class);
+        RendererFactory.register(IconComponent.class, IconRenderer.class);
 
         final Component root = new PaymentResultContainer(componentManager);
         componentManager.setActionsListener(presenter);
