@@ -3,6 +3,7 @@ package com.mercadopago.paymentresult;
 import com.mercadopago.components.Mutator;
 import com.mercadopago.components.MutatorPropsListener;
 import com.mercadopago.model.PaymentResult;
+import com.mercadopago.paymentresult.props.PaymentResultProps;
 
 /**
  * Created by vaserber on 10/20/17.
@@ -13,7 +14,7 @@ public class PaymentResultPropsMutator implements Mutator, PaymentResultPropsVie
     private MutatorPropsListener propsListener;
 
     //Component props with default values
-    private PaymentResultProps props = new PaymentResultProps("status default", "minHeight", "maxHeight");
+    private PaymentResultProps props = new PaymentResultProps();
 
     @Override
     public void setPropsListener(MutatorPropsListener listener) {
@@ -31,11 +32,10 @@ public class PaymentResultPropsMutator implements Mutator, PaymentResultPropsVie
     }
 
     @Override
-    public void setPropPaymentResult(PaymentResult paymentResult) {
+    public void setPropPaymentResult(final PaymentResult paymentResult) {
         props = props.toBuilder()
-                .setStatus(paymentResult.getPaymentStatus())
-                .setHeaderHeight("minHeight")
-                .setBodyHeight("maxHeight")
+                .setPaymentResult(paymentResult)
+                .setHeaderMode("stretch")
                 .build();
         notifyPropsChanged();
     }

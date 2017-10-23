@@ -1,9 +1,11 @@
-package com.mercadopago.paymentresult;
+package com.mercadopago.paymentresult.components;
 
 import android.support.annotation.NonNull;
 
 import com.mercadopago.components.ActionDispatcher;
 import com.mercadopago.components.Component;
+import com.mercadopago.paymentresult.props.PaymentResultHeaderProps;
+import com.mercadopago.paymentresult.props.PaymentResultProps;
 
 /**
  * Created by vaserber on 10/20/17.
@@ -21,15 +23,9 @@ public class PaymentResultContainer extends Component<PaymentResultProps> {
 
     @Override
     public void applyProps(@NonNull PaymentResultProps props) {
-        this.setProps(props);
-
-        PaymentResultHeaderProps headerProps = new PaymentResultHeaderProps(props.status, props.headerHeight);
+        PaymentResultHeaderProps headerProps = new PaymentResultHeaderProps(props.paymentResult.getPaymentStatus(), props.headerMode);
         this.headerComponent = new PaymentResultHeaderComponent(headerProps, getDispatcher());
-
-        PaymentResultBodyProps bodyProps = new PaymentResultBodyProps(props.status, props.bodyHeight);
-        this.bodyComponent = new PaymentResultBodyComponent(bodyProps, getDispatcher());
-
-        this.footerComponent = new PaymentResultFooterComponent(props.status, getDispatcher());
+        this.footerComponent = new PaymentResultFooterComponent(props.paymentResult.getPaymentStatus(), getDispatcher());
     }
 
     public PaymentResultHeaderComponent getHeaderComponent() {
@@ -42,5 +38,9 @@ public class PaymentResultContainer extends Component<PaymentResultProps> {
 
     public PaymentResultFooterComponent getFooterComponent() {
         return footerComponent;
+    }
+
+    public boolean hasBody() {
+        return bodyComponent != null;
     }
 }

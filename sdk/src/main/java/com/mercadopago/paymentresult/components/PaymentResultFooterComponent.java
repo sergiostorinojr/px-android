@@ -1,4 +1,4 @@
-package com.mercadopago.paymentresult;
+package com.mercadopago.paymentresult.components;
 
 import android.support.annotation.NonNull;
 
@@ -11,14 +11,12 @@ import com.mercadopago.components.Component;
 
 public class PaymentResultFooterComponent extends Component<String> {
 
-    String text;
-
     public PaymentResultFooterComponent(String props, @NonNull final ActionDispatcher dispatcher) {
         super(props, dispatcher);
     }
 
     @Override
     public void applyProps(@NonNull String props) {
-        this.text = props;
+
     }
 }
