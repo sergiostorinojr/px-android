@@ -33,24 +33,4 @@ public class RendererFactory {
         }
         return renderer;
     }
-
-//    public static Renderer<PaymentResultHeaderComponent> createPaymentResultHeaderRenderer(final Context context,
-//                                                                                           final PaymentResultHeaderComponent component) {
-//        PaymentResultHeaderRenderer renderer = new PaymentResultHeaderRenderer();
-//        renderer.setContext(context);
-//        renderer.setComponent(component);
-//        renderer.init();
-//
-//        return renderer;
-//    }
-//
-//    public static Renderer<PaymentResultFooterComponent> createPaymentResultFooterRenderer(final Context context,
-//                                                                                           final PaymentResultFooterComponent component) {
-//        PaymentResultFooterRenderer renderer = new PaymentResultFooterRenderer();
-//        renderer.setContext(context);
-//        renderer.setComponent(component);
-//        renderer.init();
-//
-//        return renderer;
-//    }
 }
