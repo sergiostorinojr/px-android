@@ -17,21 +17,22 @@ import com.mercadopago.paymentresult.components.IconComponent;
 public class IconRenderer extends Renderer<IconComponent> {
 
     private View iconView;
-    private ImageView iconProduct;
-    private ImageView iconBadge;
+    private ImageView iconImageView;
+    private ImageView iconBadgeView;
 
     @Override
     public View render() {
         iconView = LayoutInflater.from(context).inflate(R.layout.mpsdk_icon, null, false);
-        iconProduct = (ImageView) iconView.findViewById(R.id.mpsdkIconProduct);
-        iconBadge = (ImageView) iconView.findViewById(R.id.mpsdkIconBadge);
+        iconImageView = (ImageView) iconView.findViewById(R.id.mpsdkIconProduct);
+        iconBadgeView = (ImageView) iconView.findViewById(R.id.mpsdkIconBadge);
 
-        Drawable iconProductImage = ContextCompat.getDrawable(context, component.getProps().iconProductId);
-        iconProduct.setImageDrawable(iconProductImage);
+        Drawable iconImage = ContextCompat.getDrawable(context, component.getProps().iconImage);
+        iconImageView.setImageDrawable(iconImage);
 
-        Drawable iconBadgeImage = ContextCompat.getDrawable(context, component.getProps().iconBadgeId);
-        iconBadge.setImageDrawable(iconBadgeImage);
+        Drawable badgeImage = ContextCompat.getDrawable(context, component.getProps().badgeImage);
+        iconBadgeView.setImageDrawable(badgeImage);
 
         return iconView;
     }
+
 }

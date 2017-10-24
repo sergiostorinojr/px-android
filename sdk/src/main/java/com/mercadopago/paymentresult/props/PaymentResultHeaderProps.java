@@ -2,63 +2,64 @@ package com.mercadopago.paymentresult.props;
 
 import android.support.annotation.NonNull;
 
+
 /**
  * Created by vaserber on 10/20/17.
  */
 
 public class PaymentResultHeaderProps {
 
-    public final String status;
     public final String height;
-    public final Integer iconProductId;
-    public final Integer iconBadgeId;
+    public final Integer background;
+    public final Integer iconImage;
+    public final Integer badgeImage;
 
-    public PaymentResultHeaderProps(String status, String height, Integer iconProductId, Integer iconBadgeId) {
-        this.status = status;
+    public PaymentResultHeaderProps(String height, Integer background, Integer iconImage, Integer badgeImage) {
         this.height = height;
-        this.iconProductId = iconProductId;
-        this.iconBadgeId = iconBadgeId;
+        this.background = background;
+        this.iconImage = iconImage;
+        this.badgeImage = badgeImage;
     }
 
     public PaymentResultHeaderProps(@NonNull final Builder builder) {
-        this.status = builder.status;
         this.height = builder.height;
-        this.iconProductId = builder.iconProductId;
-        this.iconBadgeId = builder.iconBadgeId;
+        this.background = builder.background;
+        this.iconImage = builder.iconImage;
+        this.badgeImage = builder.badgeImage;
     }
 
     public Builder toBuilder() {
         return new Builder()
-                .setStatus(this.status)
                 .setHeight(this.height)
-                .setIconProductId(this.iconProductId)
-                .setIconBadgeId(this.iconBadgeId);
+                .setBackground(this.background)
+                .setIconImage(this.iconImage)
+                .setBadgeImage(this.badgeImage);
     }
 
-    public class Builder {
+    public static class Builder {
 
-        public String status;
         public String height;
-        public Integer iconProductId;
-        public Integer iconBadgeId;
+        public Integer background;
+        public Integer iconImage;
+        public Integer badgeImage;
 
-        public Builder setStatus(String status) {
-            this.status = status;
+        public Builder setBackground(Integer background) {
+            this.background = background;
+            return this;
+        }
+
+        public Builder setIconImage(Integer iconImage) {
+            this.iconImage = iconImage;
+            return this;
+        }
+
+        public Builder setBadgeImage(Integer badgeImage) {
+            this.badgeImage = badgeImage;
             return this;
         }
 
         public Builder setHeight(String height) {
             this.height = height;
-            return this;
-        }
-
-        public Builder setIconProductId(Integer iconProductId) {
-            this.iconProductId = iconProductId;
-            return this;
-        }
-
-        public Builder setIconBadgeId(Integer iconBadgeId) {
-            this.iconBadgeId = iconBadgeId;
             return this;
         }
 

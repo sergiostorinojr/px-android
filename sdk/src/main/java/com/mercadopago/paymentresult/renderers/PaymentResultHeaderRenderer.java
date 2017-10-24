@@ -1,10 +1,9 @@
 package com.mercadopago.paymentresult.renderers;
 
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mercadopago.R;
@@ -31,11 +30,10 @@ public class PaymentResultHeaderRenderer extends Renderer<PaymentResultHeaderCom
         statusTextView = (TextView) headerView.findViewById(R.id.mpsdkHeaderStatus);
         iconParentViewGroup = (ViewGroup) headerView.findViewById(R.id.iconContainer);
 
-        iconRenderer = RendererFactory.create(context, component.getIconComponent());
-        View icon = renderIcon();
-        this.iconParentViewGroup.addView(icon);
+        renderIcon();
+        renderBackground();
 
-        statusTextView.setText(component.getProps().status);
+//        statusTextView.setText(component.getProps().status);
 
         renderHeight();
         return headerView;
@@ -49,7 +47,17 @@ public class PaymentResultHeaderRenderer extends Renderer<PaymentResultHeaderCom
         }
     }
 
-    private View renderIcon() {
-        return iconRenderer.render();
+    private void renderIcon() {
+        iconRenderer = RendererFactory.create(context, component.getIconComponent());
+        View icon = iconRenderer.render();
+        iconParentViewGroup.addView(icon);
     }
+
+    private void renderBackground() {
+        headerContainer.setBackgroundColor(ContextCompat.getColor(context, component.getProps().background));
+    }
+
+
+
+
 }

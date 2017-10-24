@@ -21,11 +21,16 @@ public class PaymentResultHeaderComponent extends Component<PaymentResultHeaderP
 
     @Override
     public void applyProps(@NonNull PaymentResultHeaderProps props) {
-        IconProps iconProps = new IconProps(props.iconProductId, props.iconBadgeId);
+        IconProps iconProps = new IconProps.Builder()
+                .setIconImage(props.iconImage)
+                .setBadgeImage(props.badgeImage)
+                .build();
         this.iconComponent = new IconComponent(iconProps, getDispatcher());
     }
 
     public IconComponent getIconComponent() {
         return iconComponent;
     }
+
+
 }

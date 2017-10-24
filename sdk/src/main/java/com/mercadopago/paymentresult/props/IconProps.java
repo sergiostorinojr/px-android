@@ -2,43 +2,45 @@ package com.mercadopago.paymentresult.props;
 
 import android.support.annotation.NonNull;
 
+import com.mercadopago.model.PaymentResult;
+
 /**
  * Created by vaserber on 10/23/17.
  */
 
 public class IconProps {
 
-    public final Integer iconProductId;
-    public final Integer iconBadgeId;
+    public final Integer iconImage;
+    public final Integer badgeImage;
 
-    public IconProps(Integer iconProductId, Integer iconBadgeId) {
-        this.iconProductId = iconProductId;
-        this.iconBadgeId = iconBadgeId;
+    public IconProps(Integer iconImage, Integer badgeImage) {
+        this.iconImage = iconImage;
+        this.badgeImage = badgeImage;
     }
 
     public IconProps(@NonNull final Builder builder) {
-        this.iconProductId = builder.iconProductId;
-        this.iconBadgeId = builder.iconBadgeId;
+        this.iconImage = builder.iconImage;
+        this.badgeImage = builder.badgeImage;
     }
 
     public Builder toBuilder() {
         return new Builder()
-                .setIconProductId(this.iconProductId)
-                .setIconBadgeId(this.iconBadgeId);
+                .setIconImage(iconImage)
+                .setBadgeImage(badgeImage);
     }
 
-    public class Builder {
+    public static class Builder {
 
-        public Integer iconProductId;
-        public Integer iconBadgeId;
+        public Integer iconImage;
+        public Integer badgeImage;
 
-        public Builder setIconProductId(Integer iconProductId) {
-            this.iconProductId = iconProductId;
+        public Builder setIconImage(Integer iconImage) {
+            this.iconImage = iconImage;
             return this;
         }
 
-        public Builder setIconBadgeId(Integer iconBadgeId) {
-            this.iconBadgeId = iconBadgeId;
+        public Builder setBadgeImage(Integer badgeImage) {
+            this.badgeImage = badgeImage;
             return this;
         }
 
