@@ -414,7 +414,7 @@ public class RejectionActivity extends MercadoPagoBaseActivity implements TimerO
     }
 
     private void setDefaultRejectedIconSubtext() {
-        mIconSubtext.setText(getResources().getString(R.string.mpsdk_rejection_title));
+        mIconSubtext.setText(getResources().getString(R.string.mpsdk_rejection_label));
     }
 
     private void setDefaultExitButtonText() {

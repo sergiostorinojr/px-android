@@ -19,21 +19,23 @@ public class PaymentResultHeaderRenderer extends Renderer<PaymentResultHeaderCom
 
     private View headerView;
     private ViewGroup headerContainer;
-    private TextView statusTextView;
+    private TextView titleTextView;
     private Renderer iconRenderer;
     private ViewGroup iconParentViewGroup;
+    private TextView labelTextView;
 
     @Override
     public View render() {
         headerView = LayoutInflater.from(context).inflate(R.layout.mpsdk_payment_result_header, null, false);
         headerContainer = (ViewGroup) headerView.findViewById(R.id.mpsdkPaymentResultContainerHeader);
-        statusTextView = (TextView) headerView.findViewById(R.id.mpsdkHeaderStatus);
+        titleTextView = (TextView) headerView.findViewById(R.id.mpsdkHeaderTitle);
         iconParentViewGroup = (ViewGroup) headerView.findViewById(R.id.iconContainer);
+        labelTextView = (TextView) headerView.findViewById(R.id.mpsdkHeaderLabel);
 
         renderIcon();
         renderBackground();
-
-//        statusTextView.setText(component.getProps().status);
+        renderTitle();
+        renderLabel();
 
         renderHeight();
         return headerView;
@@ -57,7 +59,18 @@ public class PaymentResultHeaderRenderer extends Renderer<PaymentResultHeaderCom
         headerContainer.setBackgroundColor(ContextCompat.getColor(context, component.getProps().background));
     }
 
+    private void renderTitle() {
+        titleTextView.setText(component.getProps().title);
+    }
 
+    private void renderLabel() {
+        String label = context.getResources().getString(component.getProps().label);
+        if (label.isEmpty()) {
+            labelTextView.setVisibility(View.GONE);
+        } else {
+            labelTextView.setText(label);
+        }
+    }
 
 
 }

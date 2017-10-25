@@ -51,6 +51,8 @@ public class PaymentResultContainer extends Component<PaymentResultProps> {
                 .setBackground(getBackground(props.paymentResult))
                 .setIconImage(getIconImage(props.paymentResult))
                 .setBadgeImage(getBadgeImage(props.paymentResult))
+                .setTitle(getTitle(props.paymentResult))
+                .setLabel(getLabel(props.paymentResult))
                 .build();
         this.headerComponent = new PaymentResultHeaderComponent(headerProps, getDispatcher());
 
@@ -179,6 +181,7 @@ public class PaymentResultContainer extends Component<PaymentResultProps> {
             String status = paymentResult.getPaymentStatus();
             String statusDetail = paymentResult.getPaymentStatusDetail();
             return ((status.equals(Payment.StatusCodes.STATUS_PENDING) && !statusDetail.equals(Payment.StatusCodes.STATUS_DETAIL_PENDING_WAITING_PAYMENT)) ||
+                    status.equals(Payment.StatusCodes.STATUS_IN_PROCESS) ||
                     status.equals(Payment.StatusCodes.STATUS_REJECTED));
         }
         return false;
@@ -187,9 +190,144 @@ public class PaymentResultContainer extends Component<PaymentResultProps> {
     // Badge Image logic
 
     private Integer getBadgeImage(PaymentResult paymentResult) {
-        return R.drawable.mpsdk_badge_check;
+        if (isCheckBagdeImage(paymentResult)) {
+            return CHECK_BADGE_IMAGE;
+        } else if (isPendingBadgeImage(paymentResult)) {
+            return PENDING_BADGE_IMAGE;
+        } else if (isWarningBadgeImage(paymentResult)) {
+            return WARNING_BADGE_IMAGE;
+        } else if (isErrorBadgeImage(paymentResult)) {
+            return ERROR_BADGE_IMAGE;
+        } else {
+            return DEFAULT_BADGE_IMAGE;
+        }
     }
 
+    private boolean isCheckBagdeImage(PaymentResult paymentResult) {
+        return isPaymentResultValid(paymentResult) && paymentResult.getPaymentStatus().equals(Payment.StatusCodes.STATUS_APPROVED);
+    }
+
+    private boolean isPendingBadgeImage(PaymentResult paymentResult) {
+        return isPaymentResultValid(paymentResult) && (paymentResult.getPaymentStatus().equals(Payment.StatusCodes.STATUS_PENDING) ||
+                paymentResult.getPaymentStatus().equals(Payment.StatusCodes.STATUS_IN_PROCESS));
+    }
+
+    private boolean isWarningBadgeImage(PaymentResult paymentResult) {
+        if (isPaymentResultValid(paymentResult)) {
+            String status = paymentResult.getPaymentStatus();
+            String statusDetail = paymentResult.getPaymentStatusDetail();
+            return status.equals(Payment.StatusCodes.STATUS_REJECTED) && (statusDetail.equals(Payment.StatusCodes.STATUS_DETAIL_INVALID_ESC) ||
+                    statusDetail.equals(Payment.StatusCodes.STATUS_DETAIL_CC_REJECTED_CALL_FOR_AUTHORIZE) ||
+                    statusDetail.equals(Payment.StatusCodes.STATUS_DETAIL_CC_REJECTED_BAD_FILLED_CARD_NUMBER) ||
+                    statusDetail.equals(Payment.StatusCodes.STATUS_DETAIL_CC_REJECTED_BAD_FILLED_OTHER) ||
+                    statusDetail.equals(Payment.StatusCodes.STATUS_DETAIL_CC_REJECTED_BAD_FILLED_SECURITY_CODE) ||
+                    statusDetail.equals(Payment.StatusCodes.STATUS_DETAIL_CC_REJECTED_BAD_FILLED_DATE) ||
+                    statusDetail.equals(Payment.StatusCodes.STATUS_DETAIL_CC_REJECTED_CARD_DISABLED) ||
+                    statusDetail.equals(Payment.StatusCodes.STATUS_DETAIL_CC_REJECTED_INSUFFICIENT_AMOUNT));
+        }
+        return false;
+    }
+
+    private boolean isErrorBadgeImage(PaymentResult paymentResult) {
+        if (isPaymentResultValid(paymentResult)) {
+            String status = paymentResult.getPaymentStatus();
+            String statusDetail = paymentResult.getPaymentStatusDetail();
+            return status.equals(Payment.StatusCodes.STATUS_REJECTED) && (statusDetail.equals(Payment.StatusCodes.STATUS_DETAIL_CC_REJECTED_OTHER_REASON) ||
+                    statusDetail.equals(Payment.StatusCodes.STATUS_DETAIL_REJECTED_REJECTED_BY_BANK) ||
+                    statusDetail.equals(Payment.StatusCodes.STATUS_DETAIL_REJECTED_REJECTED_INSUFFICIENT_DATA) ||
+                    statusDetail.equals(Payment.StatusCodes.STATUS_DETAIL_CC_REJECTED_DUPLICATED_PAYMENT) ||
+                    statusDetail.equals(Payment.StatusCodes.STATUS_DETAIL_CC_REJECTED_MAX_ATTEMPTS) ||
+                    statusDetail.equals(Payment.StatusCodes.STATUS_DETAIL_REJECTED_HIGH_RISK));
+        }
+        return false;
+    }
+
+    // Title logic
+
+    private Integer getTitle(PaymentResult paymentResult) {
+        if (isPaymentResultValid(paymentResult) && isPaymentMethodNameValid(paymentResult)) {
+            String paymentMethodName = paymentResult.getPaymentData().getPaymentMethod().getName();
+            String status = paymentResult.getPaymentStatus();
+            String statusDetail = paymentResult.getPaymentStatusDetail();
+
+            if (status.equals(Payment.StatusCodes.STATUS_APPROVED)) {
+                return R.string.mpsdk_title_approved_payment;
+            } else if (status.equals(Payment.StatusCodes.STATUS_IN_PROCESS) || status.equals(Payment.StatusCodes.STATUS_PENDING)) {
+                return R.string.mpsdk_title_pending_payment;
+            } else if (status.equals(Payment.StatusCodes.STATUS_REJECTED)) {
+                if (statusDetail.equals(Payment.StatusCodes.STATUS_DETAIL_CC_REJECTED_OTHER_REASON)) {
+                    //TODO falta pasar parámetro: paymentMethodName
+                    return R.string.mpsdk_title_other_reason_rejection;
+                } else if (statusDetail.equals(Payment.StatusCodes.STATUS_DETAIL_CC_REJECTED_INSUFFICIENT_AMOUNT)) {
+                    //TODO falta pasar parámetro: paymentMethodName
+                    return R.string.mpsdk_text_insufficient_amount;
+                } else if (statusDetail.equals(Payment.StatusCodes.STATUS_DETAIL_CC_REJECTED_DUPLICATED_PAYMENT)) {
+                    //TODO falta pasar parámetro: paymentMethodName
+                    return R.string.mpsdk_title_other_reason_rejection;
+                } else if (statusDetail.equals(Payment.StatusCodes.STATUS_DETAIL_CC_REJECTED_CARD_DISABLED)) {
+                    //TODO falta pasar parámetro: paymentMethodName
+                    return R.string.mpsdk_text_active_card;
+                } else if (statusDetail.equals(Payment.StatusCodes.STATUS_DETAIL_REJECTED_HIGH_RISK)) {
+                    return R.string.mpsdk_title_rejection_high_risk;
+                } else if (statusDetail.equals(Payment.StatusCodes.STATUS_DETAIL_CC_REJECTED_MAX_ATTEMPTS)) {
+                    return R.string.mpsdk_title_rejection_max_attempts;
+                } else if (statusDetail.equals(Payment.StatusCodes.STATUS_DETAIL_CC_REJECTED_BAD_FILLED_OTHER) ||
+                        statusDetail.equals(Payment.StatusCodes.STATUS_DETAIL_CC_REJECTED_BAD_FILLED_CARD_NUMBER) ||
+                        statusDetail.equals(Payment.StatusCodes.STATUS_DETAIL_CC_REJECTED_BAD_FILLED_SECURITY_CODE) ||
+                        statusDetail.equals(Payment.StatusCodes.STATUS_DETAIL_CC_REJECTED_BAD_FILLED_DATE)) {
+                    //TODO falta pasar parámetro: paymentMethodName
+                    return R.string.mpsdk_text_some_card_data_is_incorrect;
+                } else if (statusDetail.equals(Payment.StatusCodes.STATUS_DETAIL_REJECTED_REJECTED_BY_BANK)
+                        || statusDetail.equals(Payment.StatusCodes.STATUS_DETAIL_REJECTED_REJECTED_INSUFFICIENT_DATA)) {
+                    return R.string.mpsdk_bolbradesco_rejection;
+                } else {
+                    return R.string.mpsdk_title_bad_filled_other;
+                }
+            }
+        }
+        //TODO revisar que hacer con los defaults
+        return R.string.mpsdk_empty_string;
+    }
+
+    // Label logic
+    private Integer getLabel(PaymentResult paymentResult) {
+        if (isLabelEmpty(paymentResult)) {
+            return R.string.mpsdk_empty_string;
+        } else if (isLabelPending(paymentResult)) {
+            //TODO faltan traducciones de este texto
+            return R.string.mpsdk_pending_label;
+        } else if (isLabelError(paymentResult)) {
+            return R.string.mpsdk_rejection_label;
+        }
+        //TODO revisar que hacer con los defaults
+        return R.string.mpsdk_empty_string;
+    }
+
+    private boolean isLabelEmpty(PaymentResult paymentResult) {
+        if (isPaymentResultValid(paymentResult)) {
+            String status = paymentResult.getPaymentStatus();
+            String statusDetail = paymentResult.getPaymentStatusDetail();
+            return status.equals(Payment.StatusCodes.STATUS_APPROVED) || status.equals(Payment.StatusCodes.STATUS_IN_PROCESS) ||
+                    (status.equals(Payment.StatusCodes.STATUS_PENDING) && !statusDetail.equals(Payment.StatusCodes.STATUS_DETAIL_PENDING_WAITING_PAYMENT));
+        }
+        return false;
+    }
+
+    private boolean isLabelPending(PaymentResult paymentResult) {
+        if (isPaymentResultValid(paymentResult)) {
+            String status = paymentResult.getPaymentStatus();
+            String statusDetail = paymentResult.getPaymentStatusDetail();
+            return status.equals(Payment.StatusCodes.STATUS_PENDING) && statusDetail.equals(Payment.StatusCodes.STATUS_DETAIL_PENDING_WAITING_PAYMENT);
+        }
+        return false;
+    }
+
+    private boolean isLabelError(PaymentResult paymentResult) {
+        return isPaymentResultValid(paymentResult) && paymentResult.getPaymentStatus().equals(Payment.StatusCodes.STATUS_REJECTED);
+    }
+
+
+    // Other validations
 
     private boolean isPaymentResultValid(PaymentResult paymentResult) {
         return paymentResult != null && paymentResult.getPaymentStatus() != null && paymentResult.getPaymentStatusDetail() != null;
@@ -203,5 +341,11 @@ public class PaymentResultContainer extends Component<PaymentResultProps> {
     private boolean isPaymentMethodValid(PaymentResult paymentResult) {
         return paymentResult != null && paymentResult.getPaymentData() != null && paymentResult.getPaymentData().getPaymentMethod() != null &&
                 paymentResult.getPaymentData().getPaymentMethod().getId() != null;
+    }
+
+    private boolean isPaymentMethodNameValid(PaymentResult paymentResult) {
+        return isPaymentMethodValid(paymentResult) && !paymentResult.getPaymentData().getPaymentMethod().getId().isEmpty() &&
+                paymentResult.getPaymentData().getPaymentMethod().getName() != null && !paymentResult.getPaymentData().getPaymentMethod().getName().isEmpty() &&
+                paymentResult.getPaymentData().getPaymentMethod().getPaymentTypeId() != null && !paymentResult.getPaymentData().getPaymentMethod().getPaymentTypeId().isEmpty();
     }
 }

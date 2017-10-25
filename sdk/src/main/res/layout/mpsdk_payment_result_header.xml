@@ -20,22 +20,23 @@
         android:layout_marginTop="50dp"/>
 
     <com.mercadopago.customviews.MPTextView
+        android:id="@+id/mpsdkHeaderLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
         android:gravity="center_horizontal"
         android:textColor="@color/mpsdk_white"
         android:textSize="16sp"
-        android:text="Lorem ipsum dolor sit" />
+        tools:text="Lorem ipsum dolor sit" />
 
     <com.mercadopago.customviews.MPTextView
-        android:id="@+id/mpsdkHeaderStatus"
+        android:id="@+id/mpsdkHeaderTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:gravity="center_horizontal"
         android:textColor="@color/mpsdk_white"
         android:textSize="26sp"
-        android:text="¡Listo, se acreditó tu pago!" />
+        tools:text="¡Listo, se acreditó tu pago!" />
 
 </LinearLayout>

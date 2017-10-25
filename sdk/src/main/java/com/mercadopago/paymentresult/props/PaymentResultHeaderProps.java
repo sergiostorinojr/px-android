@@ -13,12 +13,16 @@ public class PaymentResultHeaderProps {
     public final Integer background;
     public final Integer iconImage;
     public final Integer badgeImage;
+    public final Integer title;
+    public final Integer label;
 
-    public PaymentResultHeaderProps(String height, Integer background, Integer iconImage, Integer badgeImage) {
+    public PaymentResultHeaderProps(String height, Integer background, Integer iconImage, Integer badgeImage, Integer title, Integer label) {
         this.height = height;
         this.background = background;
         this.iconImage = iconImage;
         this.badgeImage = badgeImage;
+        this.title = title;
+        this.label = label;
     }
 
     public PaymentResultHeaderProps(@NonNull final Builder builder) {
@@ -26,6 +30,8 @@ public class PaymentResultHeaderProps {
         this.background = builder.background;
         this.iconImage = builder.iconImage;
         this.badgeImage = builder.badgeImage;
+        this.title = builder.title;
+        this.label = builder.label;
     }
 
     public Builder toBuilder() {
@@ -33,7 +39,9 @@ public class PaymentResultHeaderProps {
                 .setHeight(this.height)
                 .setBackground(this.background)
                 .setIconImage(this.iconImage)
-                .setBadgeImage(this.badgeImage);
+                .setBadgeImage(this.badgeImage)
+                .setTitle(this.title)
+                .setLabel(this.label);
     }
 
     public static class Builder {
@@ -42,6 +50,8 @@ public class PaymentResultHeaderProps {
         public Integer background;
         public Integer iconImage;
         public Integer badgeImage;
+        public Integer title;
+        public Integer label;
 
         public Builder setBackground(Integer background) {
             this.background = background;
@@ -60,6 +70,16 @@ public class PaymentResultHeaderProps {
 
         public Builder setHeight(String height) {
             this.height = height;
+            return this;
+        }
+
+        public Builder setTitle(Integer title) {
+            this.title = title;
+            return this;
+        }
+
+        public Builder setLabel(Integer label) {
+            this.label = label;
             return this;
         }
 

@@ -361,7 +361,7 @@ public class CongratsActivity extends MercadoPagoBaseActivity implements ReviewS
     }
 
     private void setDefaultCongratulationsTitle() {
-        mCongratulationsTitle.setText(getResources().getString(R.string.mpsdk_title_activity_congrats));
+        mCongratulationsTitle.setText(getResources().getString(R.string.mpsdk_title_approved_payment));
     }
 
     private void setDefaultCongratulationsSubtitle() {
